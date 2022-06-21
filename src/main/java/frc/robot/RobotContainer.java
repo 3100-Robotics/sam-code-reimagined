@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.CLIMB;
-import frc.robot.commands.runCollecor;
 import frc.robot.commands.vroomVroom;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.climber;
@@ -42,6 +41,10 @@ public class RobotContainer {
   Constants.IOConstants.backButtonChannel);
   final JoystickButton collectorMotorButton = new JoystickButton(coDriveController,
   Constants.IOConstants.aButtonChannel);
+  final JoystickButton ReverseCollectorMotor = new JoystickButton(coDriveController,
+  Constants.IOConstants.yButtonChannel);
+  final JoystickButton ReverseShooterMOtor = new JoystickButton(coDriveController,
+  Constants.IOConstants.xButtonChannel);
 
   //////////////
   // commands //
@@ -53,12 +56,27 @@ public class RobotContainer {
     Shooter);
 
   InstantCommand toggleCollector = new InstantCommand(
-    () -> collector.toggleCollector(),
+    () -> Collector.toggleCollector(),
     Collector);
   
   InstantCommand toggleClimber = new InstantCommand(
     () -> Climber.toggleClimber(),
     Climber);
+  
+    StartEndCommand runCollector = new StartEndCommand(
+      () -> Collector.runCollector(0.5),
+      () -> Collector.stopcollector(),
+    Collector);
+
+    StartEndCommand reverseCollector = new StartEndCommand(
+      () -> Collector.runCollector(-0.5),
+      () -> Collector.stopcollector(),
+    Collector);
+
+    StartEndCommand reverseShooter = new StartEndCommand(
+      () -> Shooter.runShooter(-0.7),
+      () -> Shooter.stopShooter(),
+      Shooter);
   
   /////////////////
   // no commands //
@@ -83,7 +101,9 @@ public class RobotContainer {
     shooterButton.whileHeld(runShooter);
     collectorPneumaticsButton.whenPressed(toggleCollector);
     toggleClimberpnematics.whenPressed(toggleClimber);
-    collectorMotorButton.whileHeld(new runCollecor(0.7));
+    collectorMotorButton.whileHeld(runCollector);
+    ReverseCollectorMotor.whileHeld(reverseCollector);
+    ReverseShooterMOtor.whileHeld(reverseShooter);
   }
 
   /**

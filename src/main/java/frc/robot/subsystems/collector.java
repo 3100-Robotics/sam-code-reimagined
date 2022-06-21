@@ -26,32 +26,34 @@ public class collector extends SubsystemBase{
         conveyor.setIdleMode(IdleMode.kBrake);
     }
 
-    public static void runCollector(double speed) {
+    public void runCollector(double speed) {
         collector.set(speed);
-    }
-
-    public static void stopcollector() {
-        collector.stopMotor();
-    }
-
-    public static void runConveyor(double speed) {
         conveyor.set(speed);
     }
 
-    public static void stopconveyor() {
+    public void stopcollector() {
+        collector.stopMotor();
         conveyor.stopMotor();
     }
 
-    public static void toggleCollector() {
+    public void runConveyor(double speed) {
+        conveyor.set(speed);
+    }
+
+    public void stopconveyor() {
+        conveyor.stopMotor();
+    }
+
+    public void toggleCollector() {
         IntakeSolenoid.toggle();
     }
 
-    public static void runToggleCollector(double speed) {
+    public void runToggleCollector(double speed) {
         runCollector(speed);
         toggleCollector();
     }
 
-    public static void stopToggleCollector() {
+    public void stopToggleCollector() {
         stopcollector();
         toggleCollector();
     }

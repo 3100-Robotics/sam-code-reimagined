@@ -22,8 +22,8 @@ public class climber extends SubsystemBase{
         LClimber.configFactoryDefault();
         RClimber.configFactoryDefault();
 
-        LClimber.configForwardSoftLimitEnable(true, Constants.kCANTimeoutMs);
-        RClimber.configReverseSoftLimitEnable(true, Constants.kCANTimeoutMs);
+        // LClimber.configForwardSoftLimitEnable(true, Constants.kCANTimeoutMs);
+        // RClimber.configReverseSoftLimitEnable(true, Constants.kCANTimeoutMs);
 
 
         LClimber.setNeutralMode(NeutralMode.Brake);
@@ -31,7 +31,7 @@ public class climber extends SubsystemBase{
 
         LClimber.follow(RClimber);
 
-        SoftLimitSetup();
+        // SoftLimitSetup();
 
         LClimber.setSelectedSensorPosition(0);
         RClimber.setSelectedSensorPosition(0);
@@ -56,12 +56,10 @@ public class climber extends SubsystemBase{
     }
 
     public void runClimber(double speed) {
-        LClimber.set(speed);
         RClimber.set(speed);
     }
 
     public void stopClimber() {
-        LClimber.stopMotor();
         RClimber.stopMotor();
     }
 
