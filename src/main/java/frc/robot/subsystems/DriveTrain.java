@@ -2,7 +2,11 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
+import com.kauailabs.navx.frc.AHRS;
+
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
@@ -23,6 +27,8 @@ public class DriveTrain extends SubsystemBase{
   public static WPI_TalonFX rearRight = new WPI_TalonFX(Constants.motorConstants.backRightDrivePort);
 
   static DifferentialDrive diffDrive = new DifferentialDrive(frontLeft, frontRight);
+
+  public Gyro gyro = new AHRS(SPI.Port.kMXP);
 
   public DriveTrain() {
     // initialize
