@@ -51,7 +51,7 @@ public class RobotContainer {
   //////////////
 
   StartEndCommand runShooter = new StartEndCommand(
-    () -> Shooter.runShooter(Constants.shooterSpeed),
+    () -> Shooter.runShooter(0.7),
     () -> Shooter.stopShooter(),
     Shooter);
 
@@ -74,7 +74,7 @@ public class RobotContainer {
     Collector);
 
     StartEndCommand reverseShooter = new StartEndCommand(
-      () -> Shooter.runShooter(-0.7),
+      () -> Shooter.runShooter(-0.5),
       () -> Shooter.stopShooter(),
       Shooter);
   

@@ -14,10 +14,23 @@ public class CLIMB extends CommandBase{
         addRequirements(m_climb);
     }
 
+    private double limit(double value) {
+        /* Upper deadband */
+        if (value >= +0.1)
+          return value;
+    
+        /* Lower deadband */
+        if (value <= -0.1)
+          return value;
+    
+        /* Outside deadband */
+        return 0;
+      }
+
     @Override
     public void execute() {
-        double xSpeed = -m_controller.getLeftY();
+        double Speed = -m_controller.getLeftY();
 
-        m_climb.runClimber(xSpeed);
+        m_climb.runClimber(limit(Speed));
     }
 }

@@ -14,11 +14,21 @@ public class vroomVroom extends CommandBase{
         addRequirements(m_drive);
     }
 
+    private double limit(double value) {
+        if (value >= +0.1)
+          return value;
+    
+        if (value <= -0.1)
+          return value;
+        
+        return 0;
+      }
+
     @Override
     public void execute() {
         double xSpeed = -m_controller.getLeftY();
         double zRotation = m_controller.getRightX();
 
-        m_drive.arcadeDrive(xSpeed, zRotation);
+        m_drive.arcadeDrive(limit(xSpeed), limit(zRotation));
   }
 }

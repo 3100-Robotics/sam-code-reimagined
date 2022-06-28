@@ -13,23 +13,9 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-
-    public static double joyMin = 0.1;
-    public static double speedMax = 0.9;
-    public static double climberSpeed = 0.5;
-    public static double shooterSpeed = 0.9;
-    public final static int kCANTimeoutMs = 10;
-    public final static int PID_PRIMARY = 0;
-
-    public static final class ClimberConstants {
-
-        // === CLIMBER SOFT LIMITS === //
-        public final static int kRightForwardSoftLimit_Quad = 2048 * 158;
-        public final static int kLeftForwardSoftLimit_Quad = -2048 * 154;
-        public final static int kRightReverseSoftLimit_Quad = -2048 * 158; /* 5 rotations assuming FX Integrated Sensor */
-        public final static int kLeftReverseSoftLimit_Quad = 2048 * 154;
-  
-     }
+    
+   public final static int kCANTimeoutMs = 10;
+   public final static int PID_PRIMARY = 0;
 
     public static final class motorConstants {
         public final static int hoodServoPort = 0;
@@ -50,6 +36,16 @@ public final class Constants {
 
         public final static int ClimberSolenoidPort = 6;
     }
+
+    public static final class ClimberConstants {
+
+        // === CLIMBER SOFT LIMITS === //
+        public final static int kRightForwardSoftLimit_Quad = 2048 * 158;
+        public final static int kLeftForwardSoftLimit_Quad = -2048 * 154;
+        public final static int kRightReverseSoftLimit_Quad = -2048 * 158; /* 5 rotations assuming FX Integrated Sensor */
+        public final static int kLeftReverseSoftLimit_Quad = 2048 * 154;
+  
+     }
 
     public static final class IOConstants {
         // === XBOX CHANNELS === //
