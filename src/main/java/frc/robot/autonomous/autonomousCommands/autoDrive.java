@@ -15,7 +15,7 @@ public class autoDrive extends CommandBase {
         this.stopTime = stopTime;
         this.speed = speed;
         
-        // addRequirements(Drive);
+        addRequirements(Drive);
     }
 
     public void initialize() {
@@ -28,7 +28,7 @@ public class autoDrive extends CommandBase {
     }
 
     public boolean isFinished() {
-        if (Timer.getFPGATimestamp() >= stopTime) {
+        if (Timer.getFPGATimestamp() - time >= stopTime) {
             return true;
         }
         return false;

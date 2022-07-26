@@ -7,11 +7,18 @@ public class autoTurn extends CommandBase {
 
     DriveTrain Drive;
     double angle, speed;
+    double startAngle;
 
     public autoTurn(DriveTrain drive, double angle, double speed) {
         Drive = drive;
         this.angle = angle;
         this.speed = speed;
+
+        addRequirements(Drive);
+    }
+
+    public void initialize() {
+        startAngle = Drive.gyro.getAngle();
     }
 
     public void execute() {
@@ -19,7 +26,7 @@ public class autoTurn extends CommandBase {
     }
 
     public boolean isFinished() {
-        if (Drive.gyro.getAngle() >= angle) {
+        if (Drive.gyro.getAngle() - startAngle >= angle-20) {
             return true;
         }
         return false;

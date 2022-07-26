@@ -74,4 +74,13 @@ public final class Constants {
         public static final int POVD = 180;
         public static final int POVL = 270;
      }
+
+    public static final class drivetrainConstants {
+        public final static double kSensorUnitsPerRotation = 2048;
+        private final static double kGearReduction = 8.68;
+        private final static double driveWheelRadiusMeters = 0.0508;
+
+        public static double encoderScale = (1 / kGearReduction) * (kSensorUnitsPerRotation)
+            * (2 * Math.PI * driveWheelRadiusMeters);
+    }
 }

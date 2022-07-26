@@ -63,6 +63,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    m_robotContainer.drive.resetEncoders();
   }
 
   /** This function is called periodically during autonomous. */
@@ -78,6 +79,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    System.out.println(Constants.drivetrainConstants.encoderScale);
   }
 
   /** This function is called periodically during operator control. */
