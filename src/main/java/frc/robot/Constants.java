@@ -17,6 +17,11 @@ public final class Constants {
    public final static int kCANTimeoutMs = 10;
    public final static int PID_PRIMARY = 0;
 
+    public static final class autonomousConstants {
+        public final static double shooterTime = 1;
+        public final static double conveyorTime = 1 + shooterTime;
+    }
+
     public static final class motorConstants {
         public final static int hoodServoPort = 0;
         public final static int frontLeftDrivePort = 1;

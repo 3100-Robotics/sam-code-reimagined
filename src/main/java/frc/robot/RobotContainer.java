@@ -116,6 +116,6 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     
-    return new autonomous(drive, 0.5, 0.5, Constants.drivetrainConstants.encoderScale*1000, 270, Constants.drivetrainConstants.encoderScale*1000);
+    return new autonomous(drive, Shooter, Collector, 0.5, 0.5, Constants.drivetrainConstants.encoderScale*1000, 270, Constants.drivetrainConstants.encoderScale*1000);
   }
 }
