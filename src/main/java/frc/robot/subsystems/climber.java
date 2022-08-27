@@ -12,9 +12,9 @@ public class climber extends SubsystemBase{
     public static WPI_TalonFX LClimber = new WPI_TalonFX(Constants.motorConstants.leftClimberMotorPort);
     public static WPI_TalonFX RClimber = new WPI_TalonFX(Constants.motorConstants.rightClimberMotorPort);
 
-    public static final Solenoid ClimberSolenoid = new
-    Solenoid(PneumaticsModuleType.CTREPCM,
-    Constants.Pneumaticsconstants.ClimberSolenoidPort);
+    // public static final Solenoid ClimberSolenoid = new
+    // Solenoid(PneumaticsModuleType.CTREPCM,
+    // Constants.Pneumaticsconstants.ClimberSolenoidPort);
 
     public climber() {
         LClimber.configFactoryDefault();
@@ -44,7 +44,7 @@ public class climber extends SubsystemBase{
     }
 
     public void toggleClimber() {
-        ClimberSolenoid.toggle();
+        // ClimberSolenoid.toggle();
     }
 
     void SoftLimitSetup() {

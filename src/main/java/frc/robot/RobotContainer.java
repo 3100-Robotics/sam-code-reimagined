@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.PneumaticsControlModule;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -31,6 +32,8 @@ public class RobotContainer {
   public collector Collector = new collector();
   public climber Climber = new climber();
   public DriveTrain drive = new DriveTrain();
+
+  public static final PneumaticsControlModule PCM = new PneumaticsControlModule(41);
 
   public XboxController driveController = new XboxController(0);
   public XboxController coDriveController = new XboxController(1);
@@ -116,6 +119,6 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     
-    return new autonomous(drive, Shooter, Collector, 0.5, 0.5, Constants.drivetrainConstants.encoderScale*1000, 270, Constants.drivetrainConstants.encoderScale*1000);
+    return new autonomous(drive, Shooter, Collector, 0.5, 0.5, Constants.drivetrainConstants.encoderScale*1000, 270, Constants.drivetrainConstants.encoderScale*1000, 1, 2);
   }
 }

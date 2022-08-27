@@ -10,11 +10,13 @@ public class autoShoot extends CommandBase{
     
     public shooter shooter;
     public collector collector;
-    public double time;
+    public double time, shooterTime, collectorTime;
 
-    public autoShoot(shooter shooter, collector collector) {
+    public autoShoot(shooter shooter, collector collector, double shooterTime, double collectorTime) {
         this.shooter = shooter;
         this.collector = collector;
+        this.shooterTime = shooterTime;
+        this.collectorTime = collectorTime;
         addRequirements(shooter, collector);
     }
 
@@ -38,7 +40,7 @@ public class autoShoot extends CommandBase{
     }
 
     public void end() {
-        // shooter.stopShooter();
-        // collector.stopconveyor();
+        shooter.stopShooter();
+        collector.stopconveyor();
     }
 }

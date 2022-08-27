@@ -12,9 +12,9 @@ public class autonomous extends SequentialCommandGroup {
 
     public autonomous(DriveTrain drive, shooter shooter, collector collector, double driveSpeed,
         double turnSpeed, double driveDistance1, double turnAngle,
-        double driveDistance2) {
+        double driveDistance2, double shooterTime, double collectorTime) {
             super(
-                new autoShoot(shooter, collector)
+                new autoShoot(shooter, collector, shooterTime, collectorTime)
                 // new autoEncoderDrive(drive, driveSpeed, driveDistance1),
                 // new autoTurn(drive, turnAngle, turnSpeed),
                 // new autoEncoderDrive(drive, driveSpeed, driveDistance2)

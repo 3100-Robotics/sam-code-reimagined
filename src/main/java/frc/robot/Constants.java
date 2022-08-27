@@ -81,6 +81,7 @@ public final class Constants {
      }
 
     public static final class drivetrainConstants {
+        // constants for the drivetrain
         public final static double kSensorUnitsPerRotation = 2048;
         private final static double kGearReduction = 8.68;
         private final static double driveWheelRadiusMeters = 0.0508;
