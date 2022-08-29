@@ -18,28 +18,28 @@ public final class Constants {
    public final static int PID_PRIMARY = 0;
 
     public static final class autonomousConstants {
+        // === AUTON SHOOTING TIMING === //
         public final static double shooterTime = 1;
         public final static double conveyorTime = 1 + shooterTime;
+
+        // === DRIVETRAIN MEASUREMENTS FOR AUTON === //
+        public final static double kSensorUnitsPerRotation = 2048;
+        private final static double kGearReduction = 8.68;
+        private final static double driveWheelRadiusMeters = 0.0508;
+
+        public static double encoderScale = (1 / kGearReduction) * (kSensorUnitsPerRotation)
+            * (2 * Math.PI * driveWheelRadiusMeters);
     }
 
-    public static final class motorConstants {
-        public final static int hoodServoPort = 0;
-        public final static int frontLeftDrivePort = 1;
-        public final static int backLeftDrivePort = 2;
-        public final static int frontRightDrivePort = 3;
-        public final static int backRightDrivePort = 4;
+    public static final class ShooterConstants {
+        // === MOTOR PORTS === //
+        public final static int shooterMotorPort = 9;
+    }
+
+    public static final class CollectorConstants {
+        // === MOTOR PORTS === //
         public final static int collectorMotorPort = 5;
         public final static int conveyorMotorPort = 6;
-        public final static int turretMotorPort = 8;
-        public final static int shooterMotorPort = 9;
-        public final static int leftClimberMotorPort = 10;
-        public final static int rightClimberMotorPort = 11;
-    }
-
-    public static final class Pneumaticsconstants {
-        public final static int IntakeSolenoidPort = 7;
-
-        public final static int ClimberSolenoidPort = 6;
     }
 
     public static final class ClimberConstants {
@@ -49,8 +49,19 @@ public final class Constants {
         public final static int kLeftForwardSoftLimit_Quad = -2048 * 154;
         public final static int kRightReverseSoftLimit_Quad = -2048 * 158; /* 5 rotations assuming FX Integrated Sensor */
         public final static int kLeftReverseSoftLimit_Quad = 2048 * 154;
-  
+
+        // === MOTOR PORTS === //
+        public final static int leftClimberMotorPort = 10;
+        public final static int rightClimberMotorPort = 11;
      }
+
+    public static final class DrivetrainConstants {
+        // === MOTOR PORTS === //
+        public final static int frontLeftDrivePort = 1;
+        public final static int backLeftDrivePort = 2;
+        public final static int frontRightDrivePort = 3;
+        public final static int backRightDrivePort = 4;
+    }
 
     public static final class IOConstants {
         // === XBOX CHANNELS === //
@@ -79,14 +90,4 @@ public final class Constants {
         public static final int POVD = 180;
         public static final int POVL = 270;
      }
-
-    public static final class drivetrainConstants {
-        // constants for the drivetrain
-        public final static double kSensorUnitsPerRotation = 2048;
-        private final static double kGearReduction = 8.68;
-        private final static double driveWheelRadiusMeters = 0.0508;
-
-        public static double encoderScale = (1 / kGearReduction) * (kSensorUnitsPerRotation)
-            * (2 * Math.PI * driveWheelRadiusMeters);
-    }
 }

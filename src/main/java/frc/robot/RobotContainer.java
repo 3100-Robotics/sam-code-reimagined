@@ -26,30 +26,33 @@ import frc.robot.subsystems.shooter;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
 
+  // define subsystems for button commands
   public shooter Shooter = new shooter();
   public collector Collector = new collector();
   public climber Climber = new climber();
-  public DriveTrain drive = new DriveTrain();
+  public DriveTrain Drive = new DriveTrain();
 
+  // define the channel the pcm is on
   public static final PneumaticsControlModule PCM = new PneumaticsControlModule(41);
 
+  // define controllers
   public XboxController driveController = new XboxController(0);
   public XboxController coDriveController = new XboxController(1);
 
+  // define the needed buttons for comands
   final JoystickButton shooterButton = new JoystickButton(driveController,
   Constants.IOConstants.leftBumperChannel);
-  final JoystickButton toggleClimberpnematics = new JoystickButton(coDriveController,
+  final JoystickButton ReverseShooterMotorButton = new JoystickButton(coDriveController,
+  Constants.IOConstants.xButtonChannel);
+  final JoystickButton climberpnematicsButton = new JoystickButton(coDriveController,
   Constants.IOConstants.startButtonChannel);
   final JoystickButton collectorPneumaticsButton = new JoystickButton(coDriveController,
   Constants.IOConstants.backButtonChannel);
   final JoystickButton collectorMotorButton = new JoystickButton(coDriveController,
   Constants.IOConstants.aButtonChannel);
-  final JoystickButton ReverseCollectorMotor = new JoystickButton(coDriveController,
+  final JoystickButton reverseCollectorMotorButton = new JoystickButton(coDriveController,
   Constants.IOConstants.yButtonChannel);
-  final JoystickButton ReverseShooterMOtor = new JoystickButton(coDriveController,
-  Constants.IOConstants.xButtonChannel);
 
   //////////////
   // commands //
@@ -60,28 +63,28 @@ public class RobotContainer {
     () -> Shooter.stopShooter(),
     Shooter);
 
-  InstantCommand toggleCollector = new InstantCommand(
-    () -> Collector.toggleCollector(),
-    Collector);
-  
+  StartEndCommand reverseShooter = new StartEndCommand(
+    () -> Shooter.runShooter(-0.5),
+    () -> Shooter.stopShooter(),
+  Shooter);
+
   InstantCommand toggleClimber = new InstantCommand(
     () -> Climber.toggleClimber(),
-    Climber);
+  Climber);
   
-    StartEndCommand runCollector = new StartEndCommand(
-      () -> Collector.runCollector(0.5),
-      () -> Collector.stopcollector(),
-    Collector);
+  InstantCommand toggleCollector = new InstantCommand(
+    () -> Collector.toggleCollector(),
+  Collector);
 
-    StartEndCommand reverseCollector = new StartEndCommand(
-      () -> Collector.runCollector(-0.5),
-      () -> Collector.stopcollector(),
-    Collector);
+  StartEndCommand runCollector = new StartEndCommand(
+    () -> Collector.runCollector(0.5),
+    () -> Collector.stopcollector(),
+  Collector);
 
-    StartEndCommand reverseShooter = new StartEndCommand(
-      () -> Shooter.runShooter(-0.5),
-      () -> Shooter.stopShooter(),
-      Shooter);
+  StartEndCommand reverseCollector = new StartEndCommand(
+    () -> Collector.runCollector(-0.5),
+    () -> Collector.stopcollector(),
+  Collector);
   
   /////////////////
   // no commands //
@@ -92,7 +95,8 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
-    drive.setDefaultCommand(new vroomVroom(drive, driveController));
+    // configure drivetrain and climber controll commands
+    Drive.setDefaultCommand(new vroomVroom(Drive, driveController));
     Climber.setDefaultCommand(new CLIMB(Climber, coDriveController));
   }
 
@@ -103,12 +107,13 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    // bind commands to buttons
     shooterButton.whileHeld(runShooter);
     collectorPneumaticsButton.whenPressed(toggleCollector);
-    toggleClimberpnematics.whenPressed(toggleClimber);
+    climberpnematicsButton.whenPressed(toggleClimber);
     collectorMotorButton.whileHeld(runCollector);
-    ReverseCollectorMotor.whileHeld(reverseCollector);
-    ReverseShooterMOtor.whileHeld(reverseShooter);
+    ReverseShooterMotorButton.whileHeld(reverseCollector);
+    ReverseShooterMotorButton.whileHeld(reverseShooter);
   }
 
   /**
@@ -117,8 +122,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    
-    return new autonomous(drive, Shooter, Collector, 0.5, 0.5, Constants.drivetrainConstants.encoderScale*1000, 270, Constants.drivetrainConstants.encoderScale*1000, 1, 2);
+    // giving the autonomous command
+    return new autonomous(Drive, Shooter, Collector, 0.5, 0.5, Constants.autonomousConstants.encoderScale*1000, 270, Constants.autonomousConstants.encoderScale*1000, 1, 2);
   }
 }

@@ -20,7 +20,6 @@ public class autoDrive extends CommandBase {
 
     public void initialize() {
         time = Timer.getFPGATimestamp();
-        // Drive.resetEncoders();
     }
 
     public void execute() {

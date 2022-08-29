@@ -63,7 +63,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
-    m_robotContainer.drive.resetEncoders();
+    m_robotContainer.Drive.resetEncoders();
   }
 
   /** This function is called periodically during autonomous. */

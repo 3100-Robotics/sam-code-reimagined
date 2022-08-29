@@ -8,9 +8,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class shooter extends SubsystemBase{
-    public static WPI_TalonFX shooter = new WPI_TalonFX(Constants.motorConstants.shooterMotorPort);
+    
+    public static WPI_TalonFX shooter = new WPI_TalonFX(Constants.ShooterConstants.shooterMotorPort);
 
     public shooter() {
+        // configure the motor
         shooter.configFactoryDefault();
         shooter.setNeutralMode(NeutralMode.Coast);
 

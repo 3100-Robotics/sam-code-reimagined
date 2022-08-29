@@ -9,17 +9,17 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class climber extends SubsystemBase{
-    public static WPI_TalonFX LClimber = new WPI_TalonFX(Constants.motorConstants.leftClimberMotorPort);
-    public static WPI_TalonFX RClimber = new WPI_TalonFX(Constants.motorConstants.rightClimberMotorPort);
+    public static WPI_TalonFX LClimber = new WPI_TalonFX(Constants.ClimberConstants.leftClimberMotorPort);
+    public static WPI_TalonFX RClimber = new WPI_TalonFX(Constants.ClimberConstants.rightClimberMotorPort);
 
-    // public static final Solenoid ClimberSolenoid = new
-    // Solenoid(PneumaticsModuleType.CTREPCM,
-    // Constants.Pneumaticsconstants.ClimberSolenoidPort);
+    public static final Solenoid ClimberSolenoid = new
+    Solenoid(PneumaticsModuleType.CTREPCM, 6);
 
     public climber() {
         LClimber.configFactoryDefault();
         RClimber.configFactoryDefault();
        
+        // soft limits. doesn't work right now fix later
         // LClimber.configForwardSoftLimitEnable(true, Constants.kCANTimeoutMs);
         // RClimber.configReverseSoftLimitEnable(true, Constants.kCANTimeoutMs);
 
@@ -29,6 +29,7 @@ public class climber extends SubsystemBase{
 
         LClimber.follow(RClimber);
 
+        // more soft limits
         // SoftLimitSetup();
 
         LClimber.setSelectedSensorPosition(0);
@@ -44,12 +45,11 @@ public class climber extends SubsystemBase{
     }
 
     public void toggleClimber() {
-        // ClimberSolenoid.toggle();
+        ClimberSolenoid.toggle();
     }
 
     void SoftLimitSetup() {
-      
-          
+        // more soft limits
 
         /* select local quadrature if using Talon FX */
         LClimber.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor,
@@ -65,7 +65,5 @@ public class climber extends SubsystemBase{
         RClimber.configForwardSoftLimitThreshold(Constants.ClimberConstants.kRightForwardSoftLimit_Quad, Constants.kCANTimeoutMs);
         LClimber.configReverseSoftLimitThreshold(Constants.ClimberConstants.kLeftReverseSoftLimit_Quad, Constants.kCANTimeoutMs);
         RClimber.configReverseSoftLimitThreshold(Constants.ClimberConstants.kRightReverseSoftLimit_Quad, Constants.kCANTimeoutMs);
-
-    
-}
+    }
 }

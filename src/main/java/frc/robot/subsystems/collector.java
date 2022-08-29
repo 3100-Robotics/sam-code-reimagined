@@ -9,17 +9,17 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class collector extends SubsystemBase{
-    public static CANSparkMax collector = new CANSparkMax(Constants.motorConstants.collectorMotorPort,
-    MotorType.kBrushless);
-    public static CANSparkMax conveyor = new CANSparkMax(Constants.motorConstants.conveyorMotorPort,
-    MotorType.kBrushless);
 
-    
+    public static CANSparkMax collector = new CANSparkMax(Constants.CollectorConstants.collectorMotorPort,
+    MotorType.kBrushless);
+    public static CANSparkMax conveyor = new CANSparkMax(Constants.CollectorConstants.conveyorMotorPort,
+    MotorType.kBrushless);
 
     public static final Solenoid IntakeSolenoid = new
     Solenoid(PneumaticsModuleType.CTREPCM, 7);
 
     public collector() {
+        // configure the motors
         collector.restoreFactoryDefaults();
         collector.setIdleMode(IdleMode.kBrake);
         conveyor.restoreFactoryDefaults();

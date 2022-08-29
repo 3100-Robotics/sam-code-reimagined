@@ -17,7 +17,6 @@ public class autoEncoderDrive extends CommandBase{
     }
 
     public void initialize() {
-        // time = Timer.getFPGATimestamp();
         Drive.resetEncoders();
     }
 
@@ -28,7 +27,6 @@ public class autoEncoderDrive extends CommandBase{
     public boolean isFinished() {
         if (Drive.frontRight.getSelectedSensorPosition(0) >= distance) { 
             System.out.println(Drive.frontRight.getSelectedSensorPosition(0));
-            // to add back later Drive.frontLeft.getSensorCollection().getIntegratedSensorPosition() >= distance
             return true;
         }
         return false;

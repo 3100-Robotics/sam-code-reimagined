@@ -20,11 +20,11 @@ public class DriveTrain extends SubsystemBase{
 
   TalonFXInvertType _rightInvert = TalonFXInvertType.Clockwise;
 
-  public static WPI_TalonFX frontLeft = new WPI_TalonFX(Constants.motorConstants.frontLeftDrivePort);
-  public static WPI_TalonFX rearLeft = new WPI_TalonFX(Constants.motorConstants.backLeftDrivePort);
+  public static WPI_TalonFX frontLeft = new WPI_TalonFX(Constants.DrivetrainConstants.frontLeftDrivePort);
+  public static WPI_TalonFX rearLeft = new WPI_TalonFX(Constants.DrivetrainConstants.backLeftDrivePort);
 
-  public static WPI_TalonFX frontRight = new WPI_TalonFX(Constants.motorConstants.frontRightDrivePort);
-  public static WPI_TalonFX rearRight = new WPI_TalonFX(Constants.motorConstants.backRightDrivePort);
+  public static WPI_TalonFX frontRight = new WPI_TalonFX(Constants.DrivetrainConstants.frontRightDrivePort);
+  public static WPI_TalonFX rearRight = new WPI_TalonFX(Constants.DrivetrainConstants.backRightDrivePort);
 
   static DifferentialDrive diffDrive = new DifferentialDrive(frontLeft, frontRight);
 
@@ -68,19 +68,6 @@ public class DriveTrain extends SubsystemBase{
     rearLeft.setSafetyEnabled(false);
     frontRight.setSafetyEnabled(false);
     rearRight.setSafetyEnabled(false);
-    
-
-    // _leftConfig.primaryPID.selectedFeedbackSensor = TalonFXFeedbackDevice.IntegratedSensor.toFeedbackDevice();
-    // _rightConfig.remoteFilter0.remoteSensorDeviceID = frontLeft.getDeviceID(); // Device ID of Remote Source
-    // _rightConfig.remoteFilter0.remoteSensorSource = RemoteSensorSource.TalonFX_SelectedSensor; // Remote Source Type
-
-    // setRobotDistanceConfigs(_rightInvert, _rightConfig);
-    // configs.primaryPID.selectedFeedbackSensor = FeedbackDevice.IntegratedSensor;
-
-    // frontLeft.configAllSettings(configs);
-    // frontRight.configAllSettings(configs);
-
-    // Determines which motors will be inverted
 
     // invert the right motors
     frontLeft.setInverted(false);
@@ -94,6 +81,7 @@ public class DriveTrain extends SubsystemBase{
     frontRight.setNeutralMode(NeutralMode.Brake);
     rearRight.setNeutralMode(NeutralMode.Brake);
 
+    // makes the rear motors follow the front motors
     rearLeft.follow(frontLeft);
     rearRight.follow(frontRight);
 
@@ -118,13 +106,11 @@ public class DriveTrain extends SubsystemBase{
     frontLeft.config_kI(0, 0);
     frontLeft.config_kD(0, 0);
     frontLeft.config_kF(0, 0);
-    // leftMotorLeader.configMaxIntegralAccumulator(0, 400);
 
     frontRight.config_kP(0, 0);
     frontRight.config_kI(0, 0);
     frontRight.config_kD(0, 0);
     frontRight.config_kF(0, 0);
-    // rightMotorLeader.configMaxIntegralAccumulator(0, 400);
  
     frontLeft.setIntegralAccumulator(0);
     frontRight.setIntegralAccumulator(0);
