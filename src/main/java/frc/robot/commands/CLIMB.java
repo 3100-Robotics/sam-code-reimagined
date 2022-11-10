@@ -31,6 +31,6 @@ public class CLIMB extends CommandBase{
     public void execute() {
         double Speed = -m_controller.getLeftY();
 
-        m_climb.runClimber(limit(Speed));
+        m_climb.runClimber(limit(Speed)*0.7);
     }
 }

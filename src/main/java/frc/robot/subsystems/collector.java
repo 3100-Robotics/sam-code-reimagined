@@ -47,14 +47,4 @@ public class collector extends SubsystemBase{
     public void toggleCollector() {
         IntakeSolenoid.toggle();
     }
-
-    public void runToggleCollector(double speed) {
-        runCollector(speed);
-        toggleCollector();
-    }
-
-    public void stopToggleCollector() {
-        stopcollector();
-        toggleCollector();
-    }
 }

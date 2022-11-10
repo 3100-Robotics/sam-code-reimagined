@@ -14,8 +14,6 @@ package frc.robot;
  */
 public final class Constants {
     
-   public final static int kCANTimeoutMs = 10;
-   public final static int PID_PRIMARY = 0;
 
     public static final class autonomousConstants {
         // === AUTON SHOOTING TIMING === //
@@ -43,6 +41,10 @@ public final class Constants {
     }
 
     public static final class ClimberConstants {
+
+        // === CAN CONSTANTS USED FOR CLIMBER === //
+        public final static int kCANTimeoutMs = 10;
+        public final static int PID_PRIMARY = 0;
 
         // === CLIMBER SOFT LIMITS === //
         public final static int kRightForwardSoftLimit_Quad = 2048 * 158;

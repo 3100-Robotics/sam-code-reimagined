@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.PneumaticsControlModule;
 import edu.wpi.first.wpilibj.XboxController;
@@ -34,14 +35,14 @@ public class RobotContainer {
   public DriveTrain Drive = new DriveTrain();
 
   // define the channel the pcm is on
-  public static final PneumaticsControlModule PCM = new PneumaticsControlModule(41);
+  // public static final PneumaticsControlModule PCM = new PneumaticsControlModule(41);
 
   // define controllers
   public XboxController driveController = new XboxController(0);
   public XboxController coDriveController = new XboxController(1);
 
   // define the needed buttons for comands
-  final JoystickButton shooterButton = new JoystickButton(driveController,
+  final JoystickButton shooterButton = new JoystickButton(coDriveController,
   Constants.IOConstants.leftBumperChannel);
   final JoystickButton ReverseShooterMotorButton = new JoystickButton(coDriveController,
   Constants.IOConstants.xButtonChannel);
@@ -94,6 +95,9 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+
+    // set up camera server
+    CameraServer.startAutomaticCapture();
 
     // configure drivetrain and climber controll commands
     Drive.setDefaultCommand(new vroomVroom(Drive, driveController));
