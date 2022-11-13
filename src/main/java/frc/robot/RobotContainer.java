@@ -138,6 +138,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // giving the autonomous command
-    return new autonomous(Drive, Shooter, Collector, 0.5, 0.5, Constants.autonomousConstants.encoderScale*1000, 270, Constants.autonomousConstants.encoderScale*1000, 1, 2);
+    return new autonomous(Drive, Shooter, Collector, 1, -0.5, 0.7, 0.5);
   }
 }

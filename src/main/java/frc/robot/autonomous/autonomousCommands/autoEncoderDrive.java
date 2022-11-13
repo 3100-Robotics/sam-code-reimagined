@@ -21,11 +21,14 @@ public class autoEncoderDrive extends CommandBase{
     }
 
     public void execute() {
-        Drive.arcadeDrive(0.5, 0.0);
+        Drive.arcadeDrive(speed, 0.0);
     }
 
     public boolean isFinished() {
-        if (DriveTrain.frontRight.getSelectedSensorPosition(0) >= distance) { 
+        if (speed < 0 && -DriveTrain.frontRight.getSelectedSensorPosition(0) >= distance) {
+            return true;
+        }
+        else if (DriveTrain.frontRight.getSelectedSensorPosition(0) >= distance) { 
             System.out.println(DriveTrain.frontRight.getSelectedSensorPosition(0));
             return true;
         }

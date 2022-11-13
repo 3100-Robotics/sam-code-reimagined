@@ -18,7 +18,7 @@ public final class Constants {
     public static final class autonomousConstants {
         // === AUTON SHOOTING TIMING === //
         public final static double shooterTime = 1;
-        public final static double conveyorTime = 1 + shooterTime;
+        public final static double conveyorTime = 1;
 
         // === DRIVETRAIN MEASUREMENTS FOR AUTON === //
         public final static double kSensorUnitsPerRotation = 2048;
