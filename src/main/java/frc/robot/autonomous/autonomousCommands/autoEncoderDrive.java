@@ -25,8 +25,8 @@ public class autoEncoderDrive extends CommandBase{
     }
 
     public boolean isFinished() {
-        if (Drive.frontRight.getSelectedSensorPosition(0) >= distance) { 
-            System.out.println(Drive.frontRight.getSelectedSensorPosition(0));
+        if (DriveTrain.frontRight.getSelectedSensorPosition(0) >= distance) { 
+            System.out.println(DriveTrain.frontRight.getSelectedSensorPosition(0));
             return true;
         }
         return false;

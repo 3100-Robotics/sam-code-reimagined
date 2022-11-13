@@ -6,7 +6,6 @@ package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.PneumaticsControlModule;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -14,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.autonomous.autonomous;
 import frc.robot.commands.CLIMB;
+import frc.robot.commands.collectorVroom;
 import frc.robot.commands.vroomVroom;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.climber;
@@ -44,16 +44,19 @@ public class RobotContainer {
   // define the needed buttons for comands
   final JoystickButton shooterButton = new JoystickButton(coDriveController,
   Constants.IOConstants.leftBumperChannel);
-  final JoystickButton ReverseShooterMotorButton = new JoystickButton(coDriveController,
-  Constants.IOConstants.xButtonChannel);
-  final JoystickButton climberpnematicsButton = new JoystickButton(coDriveController,
-  Constants.IOConstants.startButtonChannel);
-  final JoystickButton collectorPneumaticsButton = new JoystickButton(coDriveController,
-  Constants.IOConstants.backButtonChannel);
   final JoystickButton collectorMotorButton = new JoystickButton(coDriveController,
   Constants.IOConstants.aButtonChannel);
-  final JoystickButton reverseCollectorMotorButton = new JoystickButton(coDriveController,
+
+  final JoystickButton reverseIntakeButton = new JoystickButton(coDriveController,
   Constants.IOConstants.yButtonChannel);
+
+  final JoystickButton climberpnematicsButton = new JoystickButton(coDriveController,
+  Constants.IOConstants.startButtonChannel);
+  
+  final JoystickButton collectorUpButton = new JoystickButton(coDriveController, 
+  Constants.IOConstants.xButtonChannel);
+  final JoystickButton collectorDownButton = new JoystickButton(coDriveController, 
+  Constants.IOConstants.bButtonChannel);
 
   //////////////
   // commands //
@@ -72,26 +75,31 @@ public class RobotContainer {
   InstantCommand toggleClimber = new InstantCommand(
     () -> Climber.toggleClimber(),
   Climber);
-  
-  InstantCommand toggleCollector = new InstantCommand(
-    () -> Collector.toggleCollector(),
-  Collector);
 
   StartEndCommand runCollector = new StartEndCommand(
     () -> Collector.runCollector(0.5),
-    () -> Collector.stopcollector(),
+    () -> Collector.stopCollector(),
   Collector);
 
   StartEndCommand reverseCollector = new StartEndCommand(
     () -> Collector.runCollector(-0.5),
-    () -> Collector.stopcollector(),
+    () -> Collector.stopCollector(),
+  Collector);
+
+  StartEndCommand runCollectorUp = new StartEndCommand(
+    () -> Collector.runCollectorUpDown(0.5), 
+    () -> Collector.stopCollectorUpDown(),
+  Collector);
+
+  StartEndCommand runCollectorDown = new StartEndCommand(
+    () -> Collector.runCollectorUpDown(-0.5), 
+    () -> Collector.stopCollectorUpDown(),
   Collector);
   
   /////////////////
   // no commands //
   ////////////////
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
@@ -100,6 +108,8 @@ public class RobotContainer {
     CameraServer.startAutomaticCapture();
 
     // configure drivetrain and climber controll commands
+    // Collector.setDefaultCommand(new collectorVroom(Collector, coDriveController));
+    // if you want joystick collector up down uncomment this this ^
     Drive.setDefaultCommand(new vroomVroom(Drive, driveController));
     Climber.setDefaultCommand(new CLIMB(Climber, coDriveController));
   }
@@ -113,11 +123,12 @@ public class RobotContainer {
   private void configureButtonBindings() {
     // bind commands to buttons
     shooterButton.whileHeld(runShooter);
-    collectorPneumaticsButton.whenPressed(toggleCollector);
     climberpnematicsButton.whenPressed(toggleClimber);
     collectorMotorButton.whileHeld(runCollector);
-    ReverseShooterMotorButton.whileHeld(reverseCollector);
-    ReverseShooterMotorButton.whileHeld(reverseShooter);
+    reverseIntakeButton.whileHeld(reverseCollector);
+    reverseIntakeButton.whileHeld(reverseShooter);
+    collectorUpButton.whileHeld(runCollectorUp);
+    collectorDownButton.whileHeld(runCollectorDown);
   }
 
   /**

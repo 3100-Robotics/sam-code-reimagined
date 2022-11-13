@@ -41,6 +41,6 @@ public class autoShoot extends CommandBase{
 
     public void end() {
         shooter.stopShooter();
-        collector.stopconveyor();
+        collector.stopConveyor();
     }
 }

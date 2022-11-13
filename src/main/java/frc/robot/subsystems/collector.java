@@ -1,10 +1,9 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -14,9 +13,7 @@ public class collector extends SubsystemBase{
     MotorType.kBrushless);
     public static CANSparkMax conveyor = new CANSparkMax(Constants.CollectorConstants.conveyorMotorPort,
     MotorType.kBrushless);
-
-    public static final Solenoid IntakeSolenoid = new
-    Solenoid(PneumaticsModuleType.CTREPCM, 7);
+    public static WPI_TalonFX collectorUpDown = new WPI_TalonFX(Constants.CollectorConstants.collectorUpDownPort);
 
     public collector() {
         // configure the motors
@@ -31,7 +28,7 @@ public class collector extends SubsystemBase{
         conveyor.set(speed);
     }
 
-    public void stopcollector() {
+    public void stopCollector() {
         collector.stopMotor();
         conveyor.stopMotor();
     }
@@ -40,11 +37,15 @@ public class collector extends SubsystemBase{
         conveyor.set(speed);
     }
 
-    public void stopconveyor() {
+    public void stopConveyor() {
         conveyor.stopMotor();
     }
 
-    public void toggleCollector() {
-        IntakeSolenoid.toggle();
+    public void runCollectorUpDown(double speed) {
+        collectorUpDown.set(speed);
+    }
+
+    public void stopCollectorUpDown() {
+        collectorUpDown.stopMotor();
     }
 }
