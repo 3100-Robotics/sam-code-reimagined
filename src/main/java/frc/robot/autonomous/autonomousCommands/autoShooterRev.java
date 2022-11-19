@@ -26,6 +26,7 @@ public class autoShooterRev extends CommandBase{
 
     public boolean isFinished() {
         if (Timer.getFPGATimestamp() - time >= Constants.autonomousConstants.shooterTime) {
+            System.out.println("done reving");
             return true;
         }
         return false;

@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.autonomous.autonomous;
 import frc.robot.commands.CLIMB;
-import frc.robot.commands.collectorVroom;
+// import frc.robot.commands.collectorVroom;
 import frc.robot.commands.vroomVroom;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.climber;
@@ -86,14 +86,14 @@ public class RobotContainer {
     () -> Collector.stopCollector(),
   Collector);
 
-  StartEndCommand runCollectorUp = new StartEndCommand(
-    () -> Collector.runCollectorUpDown(0.5), 
+  StartEndCommand runCollectorDown = new StartEndCommand(
+    () -> Collector.runCollectorUpDown(0.3), 
     () -> Collector.stopCollectorUpDown(),
   Collector);
 
-  StartEndCommand runCollectorDown = new StartEndCommand(
-    () -> Collector.runCollectorUpDown(-0.5), 
-    () -> Collector.stopCollectorUpDown(),
+  StartEndCommand runCollectorUp = new StartEndCommand(
+    () -> Collector.runCollectorUpDown(-0.3), 
+    () -> Collector.runCollectorUpDown(-0.1),
   Collector);
   
   /////////////////
@@ -138,6 +138,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // giving the autonomous command
-    return new autonomous(Drive, Shooter, Collector, 1, -0.5, 0.7, 0.5);
+    return new autonomous(Drive, Shooter, Collector, 2000*Constants.autonomousConstants.encoderScale, -0.5, 0.7, 0.5);
   }
 }

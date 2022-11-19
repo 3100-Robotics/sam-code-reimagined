@@ -1,6 +1,5 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -13,7 +12,8 @@ public class collector extends SubsystemBase{
     MotorType.kBrushless);
     public static CANSparkMax conveyor = new CANSparkMax(Constants.CollectorConstants.conveyorMotorPort,
     MotorType.kBrushless);
-    public static WPI_TalonFX collectorUpDown = new WPI_TalonFX(Constants.CollectorConstants.collectorUpDownPort);
+    public static CANSparkMax collectorUpDown = new CANSparkMax(Constants.CollectorConstants.collectorUpDownPort,
+    MotorType.kBrushed);
 
     public collector() {
         // configure the motors
@@ -21,6 +21,9 @@ public class collector extends SubsystemBase{
         collector.setIdleMode(IdleMode.kBrake);
         conveyor.restoreFactoryDefaults();
         conveyor.setIdleMode(IdleMode.kBrake);
+        collectorUpDown.restoreFactoryDefaults();
+        collectorUpDown.setIdleMode(IdleMode.kBrake);
+        
     }
 
     public void runCollector(double speed) {
@@ -42,10 +45,12 @@ public class collector extends SubsystemBase{
     }
 
     public void runCollectorUpDown(double speed) {
+        // System.out.println("running the motor!");
         collectorUpDown.set(speed);
     }
 
     public void stopCollectorUpDown() {
+        // System.out.println("stoping motor!");
         collectorUpDown.stopMotor();
     }
 }

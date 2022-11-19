@@ -31,14 +31,14 @@ public final class Constants {
 
     public static final class ShooterConstants {
         // === MOTOR PORTS === //
-        public final static int shooterMotorPort = 0;
+        public final static int shooterMotorPort = 9;
     }
 
     public static final class CollectorConstants {
         // === MOTOR PORTS === //
-        public final static int collectorMotorPort = 0;
-        public final static int conveyorMotorPort = 0;
-        public final static int collectorUpDownPort = 0;
+        public final static int collectorMotorPort = 5;
+        public final static int conveyorMotorPort = 6;
+        public final static int collectorUpDownPort = 7;
     }
 
     public static final class ClimberConstants {
@@ -54,16 +54,16 @@ public final class Constants {
         public final static int kLeftReverseSoftLimit_Quad = 2048 * 154;
 
         // === MOTOR PORTS === //
-        public final static int leftClimberMotorPort = 0;
-        public final static int rightClimberMotorPort = 0;
+        public final static int leftClimberMotorPort = 10;
+        public final static int rightClimberMotorPort = 11;
      }
 
     public static final class DrivetrainConstants {
         // === MOTOR PORTS === //
-        public final static int frontLeftDrivePort = 0;
-        public final static int backLeftDrivePort = 0;
-        public final static int frontRightDrivePort = 0;
-        public final static int backRightDrivePort = 0;
+        public final static int frontLeftDrivePort = 1;
+        public final static int backLeftDrivePort = 2;
+        public final static int frontRightDrivePort = 3;
+        public final static int backRightDrivePort = 4;
     }
 
     public static final class IOConstants {

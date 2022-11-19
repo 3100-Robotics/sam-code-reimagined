@@ -9,13 +9,12 @@ import frc.robot.subsystems.shooter;
 public class autoConveyor extends CommandBase{
     public shooter shooter;
     public collector collector;
-    public double time, convSpeed, shootSpeed;
+    public double time, convSpeed;
 
     public autoConveyor(collector collector, shooter shooter, double convSpeed) {
         this.collector = collector;
         this.shooter = shooter;
         this.convSpeed = convSpeed;
-        this.shootSpeed = shootSpeed;
         addRequirements(collector);
     }
 
@@ -24,19 +23,23 @@ public class autoConveyor extends CommandBase{
     }
 
     public void execute() {
-        collector.runConveyor(shootSpeed);
+        collector.runConveyor(convSpeed);
     }
 
     public boolean isFinished() {
         if (Timer.getFPGATimestamp() - time >= Constants.autonomousConstants.conveyorTime) {
             System.out.println("all done here");
+            shooter.stopShooter();
+            collector.stopConveyor();
             return true;
         }
         return false;
     }
 
+    
     public void end() {
         shooter.stopShooter();
         collector.stopConveyor();
+        System.out.println("stopped motors");
     }
 }
