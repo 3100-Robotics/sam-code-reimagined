@@ -1,0 +1,1 @@
+For anyone looking at this and wondering, "What the heck is his?", basically this is sam's code that he made for learning frc programming and to have working code for our 2022 robot. It is mostly equivalent to https://github.com/3100-Robotics/robot-2022.
